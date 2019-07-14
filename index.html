@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Homepage</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/small-business.css" rel="stylesheet">
+
+</head>
+
+<body onload="ask()">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" id="name" href="#">Welcome</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+              <font color="white"><a id="date"></a></font>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-7" id="image">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h1 class="font-weight-light" id="time"></h1>
+        <p id="timeMessage"></p>
+        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal"><font color="white">Need Motivation?</font></a>
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+      
+      <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Motivational Quote</h4>
+      </div>
+      <div class="modal-body">
+        <script src="http://www.quotationspage.com/data/1mqotd.js">
+</script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p style="font-size:300%;"><i>Quote of the Day</i></p>
+                </div>
+                <div class="col-md-6">
+                    <a href="https://kwize.com/quote-of-the-day/"><img style="width:100%;" src="https://kwize.com/pics/Quote-of-the-Day-1-1.jpg" alt="Quote of the Day"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Horoscope</h2>
+            <!-- Begin horoscope -->
+              <script src="https://www.albinoblacksheep.com/horoscope/embed.js"></script><noscript><a href="https://www.albinoblacksheep.com/horoscope/">Learn about the Different Schools of Thought</a></noscript>
+            <!-- End horoscope -->
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5" onload="getLocation()">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Weather</h2>
+              <table class="table-responsive"><tr><td>
+                                  <iframe id="forecast_embed" frameborder="0" height="245" width="100%"></iframe>
+                  </td></tr></table>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Search</h2>
+              <img src="http://dwglogo.com/wp-content/uploads/2016/01/DuckDuckGo-Symbol.png" class = "img-responsive" style="width:100%"/>
+
+            <iframe src="https://duckduckgo.com/search.html?prefill=Search DuckDuckGo&focus=yes" style="overflow:hidden;margin:0;padding:0;width:100%;height:100%;" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">The Homepage to Aid in Spiritual Development</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+    
+<script>
+    
+function showPosition(position) {
+    
+    document.getElementById("forecast_embed").setAttribute("src", "http://forecast.io/embed/#lat=" + position.coords.latitude + "&lon=" +  position.coords.longitude +"&name=Provided By");
+}
+    
+function ask(){
+    
+    if (document.cookie.replace(/(?:(?:^|.*;\s*)doSomethingOnlyOnce\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
+        if (document.cookie === ""){
+            var person = prompt("Make it a personal experience! Please enter your name. (Make sure cookies are enabled. For your security, they expire when you close the browser)", "");
+            if (person != null) {
+                document.cookie = "doSomethingOnlyOnce=true";
+                document.cookie = "name=" + person +"";
+                document.cookie = "path=/";
+                document.getElementById("name").innerHTML =
+                    "Welcome " + person + "!";
+
+
+                //document.cookie = "doSomethingOnlyOnce=true; name=" + person + ";";
+                console.log(document.cookie);
+            }
+        }
+      
+    console.log(document.cookie);   
+    }
+    else {
+       var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+            document.getElementById("name").innerHTML =
+                "Welcome " + cookieValue + "!";
+        
+    }
+    
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    document.getElementById("date").innerHTML = "Today is " + today;
+    
+    
+   
+    navigator.geolocation.getCurrentPosition(showPosition);
+
+}    
+</script>
+<script>
+var day = new Date();
+var hr = day.getHours();
+var x = document.createElement("IMG");
+if (hr == 1) {
+    document.getElementById("time").innerHTML = "Good morning!";
+ document.getElementById("timeMessage").innerHTML = "Good morning! 1AM and still your going!";
+    x.setAttribute("src", "img/night.jpg");
+}
+if (hr == 2) {
+    document.getElementById("time").innerHTML = "Good morning!";
+ document.getElementById("timeMessage").innerHTML = "Hey, it is past 2AM! The bars must be closed!";
+    x.setAttribute("src", "img/night.jpg");
+}
+if (hr == 3) {
+    document.getElementById("time").innerHTML = "Good morning!";
+ document.getElementById("timeMessage").innerHTML ="Hey, it is after 3AM! You must be a night owl.";
+    x.setAttribute("src", "img/night.jpg");
+}
+if (hr == 4) {
+    document.getElementById("time").innerHTML = "Good morning!";
+ document.getElementById("timeMessage").innerHTML = "4AM? You must be up late or early!";
+    x.setAttribute("src", "img/night.jpg");
+}
+if (hr == 5) {
+    document.getElementById("time").innerHTML = "Good morning!";
+ document.getElementById("timeMessage").innerHTML = "Whoa! It's almost daylight and your still going!";
+    x.setAttribute("src", "img/night.jpg");
+}
+if (hr == 6) {
+    document.getElementById("time").innerHTML = "Good morning!";
+ document.getElementById("timeMessage").innerHTML = "Hey, isn't it too early to be using your computer";
+    x.setAttribute("src", "img/morning.jpg");
+}
+if ((hr == 6) || (hr == 7) || (hr == 8) || (hr == 9) || (hr == 10)) {
+ document.getElementById("time").innerHTML = "Good morning!";
+    document.getElementById("timeMessage").innerHTML = "Allow your spirit to guide you throughout your day!";
+    x.setAttribute("src", "img/morning.jpg");
+}
+if (hr == 11) {
+    document.getElementById("time").innerHTML = "Good morning!";
+ document.getElementById("timeMessage").innerHTML = "11AM... Is it time for lunch yet?";
+    x.setAttribute("src", "img/morning.jpg");
+}
+if (hr == 12) {
+    document.getElementById("time").innerHTML = "Good afternoon!";
+ document.getElementById("timeMessage").innerHTML = "Noon! Great, it must be time for lunch!";
+    x.setAttribute("src", "img/afternoon.jpg");
+}
+if (hr == 14) {
+     document.getElementById("time").innerHTML = "Good afternoon!";
+ document.getElementById("timeMessage").innerHTML = "It's 2PM. Have you eaten lunch yet?";
+    x.setAttribute("src", "img/afternoon.jpg");
+}
+if ((hr == 15) || (hr == 16) || (hr == 13)) {
+  document.getElementById("time").innerHTML = "Good afternoon!";
+    document.getElementById("timeMessage").innerHTML = "There is light at the end of the tunnel";
+    x.setAttribute("src", "img/afternoon.jpg");
+}
+if ((hr == 17) || (hr == 18) || (hr == 19) || (hr == 20) || (hr == 21) || (hr == 22)) {
+  document.getElementById("time").innerHTML = "Good evening!";
+    document.getElementById("timeMessage").innerHTML = "Great time to connect with your spirituality.";
+    x.setAttribute("src", "img/evening.jpg");
+}
+if (hr == 23) {
+     document.getElementById("time").innerHTML = "Good evening!";
+ document.getElementById("timeMessage").innerHTML = "It's almost midnight...Aren't you sleepy yet?";
+    x.setAttribute("src", "img/night.jpg");
+}
+if (hr==0) {
+     document.getElementById("time").innerHTML = "Good morning!";
+  document.getElementById("timeMessage").innerHTML = "It's midnight... do you ever sleep?";
+    x.setAttribute("src", "img/night.jpg");
+}
+    x.setAttribute("class","img-fluid rounded mb-4 mb-lg-0");
+    document.getElementById("image").appendChild(x);
+</script>
+
+</html>
